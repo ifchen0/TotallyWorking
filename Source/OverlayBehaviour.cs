@@ -86,7 +86,7 @@ namespace TotallyWorking
                 lines.AddRange(feedLines);
             }
 
-            if (TotallyWorkingMod.Settings.logOnly || Time.unscaledTime < pauseUntil)
+            if (TotallyWorkingMod.Settings.logOnly || Time.unscaledTime < pauseUntil || GamePaused)
                 lineTimer = 0f;
             else
                 lineTimer += Time.unscaledDeltaTime * TotallyWorkingMod.Settings.linesPerSecond;
@@ -190,6 +190,10 @@ namespace TotallyWorking
             }
             GUI.color = old;
         }
+
+        // Holding the fake code while the game is paused keeps the latest real log lines on screen.
+        private static bool GamePaused => TotallyWorkingMod.Settings.pauseWithGame && Current.ProgramState == ProgramState.Playing
+            && Find.TickManager != null && Find.TickManager.Paused;
 
         private float Range(float min, float max) => min + (float)rand.NextDouble() * (max - min);
 

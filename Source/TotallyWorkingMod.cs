@@ -18,6 +18,7 @@ namespace TotallyWorking
         public bool showSummary = true;
         public bool logOnly;
         public bool randomPauses = true;
+        public bool pauseWithGame = true;
         public bool coverWindows = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
@@ -37,6 +38,7 @@ namespace TotallyWorking
             Scribe_Values.Look(ref showSummary, "showSummary", true);
             Scribe_Values.Look(ref logOnly, "logOnly", false);
             Scribe_Values.Look(ref randomPauses, "randomPauses", true);
+            Scribe_Values.Look(ref pauseWithGame, "pauseWithGame", true);
             Scribe_Values.Look(ref coverWindows, "coverWindows", true);
             Scribe_Values.Look(ref disguiseWindow, "disguiseWindow", true);
             Scribe_Values.Look(ref windowTitle, "windowTitle", "build.log - Notepad");
@@ -87,6 +89,7 @@ namespace TotallyWorking
             listing.Label("TotW_FontSize".Translate(Settings.fontSize));
             Settings.fontSize = Mathf.RoundToInt(listing.Slider(Settings.fontSize, 8f, 32f));
             listing.CheckboxLabeled("TotW_RandomPauses".Translate(), ref Settings.randomPauses, "TotW_RandomPauses_Desc".Translate());
+            listing.CheckboxLabeled("TotW_PauseWithGame".Translate(), ref Settings.pauseWithGame, "TotW_PauseWithGame_Desc".Translate());
             listing.CheckboxLabeled("TotW_CoverWindows".Translate(), ref Settings.coverWindows, "TotW_CoverWindows_Desc".Translate());
             listing.Gap();
             listing.CheckboxLabeled("TotW_ShowEvents".Translate(), ref Settings.showEvents, "TotW_ShowEvents_Desc".Translate());
