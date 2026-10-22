@@ -1,4 +1,4 @@
-Covers the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable.
+A boss key that covers the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable.
 
 [h2]Usage[/h2]
 Press [b]F9[/b] to cycle the overlay: off, light, heavy, off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
