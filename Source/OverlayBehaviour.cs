@@ -138,7 +138,8 @@ namespace TotallyWorking
             var settings = TotallyWorkingMod.Settings;
             if (settings.level == 0)
                 return;
-            if (Event.current.type == EventType.ScrollWheel)
+            // rawType: over a game window the wheel event arrives already used (the window scrolled), still read it.
+            if (Event.current.rawType == EventType.ScrollWheel)
             {
                 // Only read the wheel; the event is left unused so the game still zooms.
                 float dy = Event.current.delta.y;
