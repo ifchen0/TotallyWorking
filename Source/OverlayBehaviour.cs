@@ -60,7 +60,10 @@ namespace TotallyWorking
                 lines.AddRange(feedLines);
             }
 
-            lineTimer += Time.unscaledDeltaTime * TotallyWorkingMod.Settings.linesPerSecond;
+            if (TotallyWorkingMod.Settings.logOnly)
+                lineTimer = 0f;
+            else
+                lineTimer += Time.unscaledDeltaTime * TotallyWorkingMod.Settings.linesPerSecond;
             // Cap the catch-up after a long frame so the screen does not jump by pages.
             if (lineTimer > 20f)
                 lineTimer = 20f;

@@ -11,6 +11,8 @@ The code is put together while you play from the game and your loaded mods: clas
 [h2]Game events[/h2][list]
 [*]New letters show up as [i]// TODO[/i] comments and messages as [i]// NOTE[/i] comments, in the game's colours.
 [*]Errors and warnings from the debug log show up as red and yellow compiler errors.
+[*]Live colony status: alerts, colonist state changes (downed, mental breaks, drafting, injuries), optional job changes and an hourly colony summary. Events that happen together are merged into one line.
+[*][b]Log only[/b] (off by default) drops the fake code and shows just these events, as a live colony log.
 [/list]
 
 [h2]Notes[/h2][list]

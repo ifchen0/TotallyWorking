@@ -12,6 +12,11 @@ namespace TotallyWorking
         public int fontSize = 14;
         public bool showEvents = true;
         public bool showLogErrors = true;
+        public bool showAlerts = true;
+        public bool showPawnStates = true;
+        public bool showJobs;
+        public bool showSummary = true;
+        public bool logOnly;
         public int level; // 0 off, 1 light, 2 heavy; kept across restarts
 
         public override void ExposeData()
@@ -22,6 +27,11 @@ namespace TotallyWorking
             Scribe_Values.Look(ref fontSize, "fontSize", 14);
             Scribe_Values.Look(ref showEvents, "showEvents", true);
             Scribe_Values.Look(ref showLogErrors, "showLogErrors", true);
+            Scribe_Values.Look(ref showAlerts, "showAlerts", true);
+            Scribe_Values.Look(ref showPawnStates, "showPawnStates", true);
+            Scribe_Values.Look(ref showJobs, "showJobs", false);
+            Scribe_Values.Look(ref showSummary, "showSummary", true);
+            Scribe_Values.Look(ref logOnly, "logOnly", false);
             Scribe_Values.Look(ref level, "level", 0);
         }
     }
@@ -71,6 +81,12 @@ namespace TotallyWorking
             listing.Gap();
             listing.CheckboxLabeled("TotW_ShowEvents".Translate(), ref Settings.showEvents, "TotW_ShowEvents_Desc".Translate());
             listing.CheckboxLabeled("TotW_ShowLogErrors".Translate(), ref Settings.showLogErrors, "TotW_ShowLogErrors_Desc".Translate());
+            listing.CheckboxLabeled("TotW_ShowAlerts".Translate(), ref Settings.showAlerts, "TotW_ShowAlerts_Desc".Translate());
+            listing.CheckboxLabeled("TotW_ShowPawnStates".Translate(), ref Settings.showPawnStates, "TotW_ShowPawnStates_Desc".Translate());
+            listing.CheckboxLabeled("TotW_ShowJobs".Translate(), ref Settings.showJobs, "TotW_ShowJobs_Desc".Translate());
+            listing.CheckboxLabeled("TotW_ShowSummary".Translate(), ref Settings.showSummary, "TotW_ShowSummary_Desc".Translate());
+            listing.Gap();
+            listing.CheckboxLabeled("TotW_LogOnly".Translate(), ref Settings.logOnly, "TotW_LogOnly_Desc".Translate());
             listing.End();
         }
     }

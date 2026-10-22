@@ -9,4 +9,14 @@
   <TotW_ShowEvents_Desc>新信件會顯示成// TODO註解，訊息顯示成// NOTE註解，顏色與遊戲內相同。</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>顯示log錯誤與警告</TotW_ShowLogErrors>
   <TotW_ShowLogErrors_Desc>除錯log的新錯誤與警告會顯示成編譯器的錯誤（紅色）與警告（黃色）。</TotW_ShowLogErrors_Desc>
+  <TotW_ShowAlerts>顯示提示</TotW_ShowAlerts>
+  <TotW_ShowAlerts_Desc>右下角的提示（飢餓、殖民者閒置等）出現和解除時都會記錄。</TotW_ShowAlerts_Desc>
+  <TotW_ShowPawnStates>顯示殖民者狀態變化</TotW_ShowPawnStates>
+  <TotW_ShowPawnStates_Desc>記錄殖民者倒地或爬起、精神崩潰或恢復、徵召或解除徵召，以及新的受傷或疾病。</TotW_ShowPawnStates_Desc>
+  <TotW_ShowJobs>顯示殖民者工作變更</TotW_ShowJobs>
+  <TotW_ShowJobs_Desc>殖民者每次換工作都會記錄。殖民者多時會很頻繁。</TotW_ShowJobs_Desc>
+  <TotW_ShowSummary>顯示每小時殖民地摘要</TotW_ShowSummary>
+  <TotW_ShowSummary_Desc>每個遊戲內小時記錄目前地圖的殖民者人數、平均心情、食物天數和財富。</TotW_ShowSummary_Desc>
+  <TotW_LogOnly>只顯示log（不顯示假程式碼）</TotW_LogOnly>
+  <TotW_LogOnly_Desc>只顯示上面的遊戲事件和狀態行，不顯示捲動的程式碼。</TotW_LogOnly_Desc>
 </LanguageData>

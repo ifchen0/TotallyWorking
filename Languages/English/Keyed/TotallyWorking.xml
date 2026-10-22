@@ -9,4 +9,14 @@
   <TotW_ShowEvents_Desc>New letters appear as // TODO comments and messages as // NOTE comments, coloured like in the game.</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>Show log errors and warnings</TotW_ShowLogErrors>
   <TotW_ShowLogErrors_Desc>New errors and warnings from the debug log appear as compiler errors (red) and warnings (yellow).</TotW_ShowLogErrors_Desc>
+  <TotW_ShowAlerts>Show alerts</TotW_ShowAlerts>
+  <TotW_ShowAlerts_Desc>Alerts in the bottom-right corner (starvation, idle colonist and so on) are logged when they appear and when they are resolved.</TotW_ShowAlerts_Desc>
+  <TotW_ShowPawnStates>Show colonist state changes</TotW_ShowPawnStates>
+  <TotW_ShowPawnStates_Desc>Logs when a colonist is downed or gets back up, has a mental break or recovers, is drafted or undrafted, or gets a new injury or illness.</TotW_ShowPawnStates_Desc>
+  <TotW_ShowJobs>Show colonist job changes</TotW_ShowJobs>
+  <TotW_ShowJobs_Desc>Logs every time a colonist starts a new job. Busy with many colonists.</TotW_ShowJobs_Desc>
+  <TotW_ShowSummary>Show hourly colony summary</TotW_ShowSummary>
+  <TotW_ShowSummary_Desc>Every in-game hour, logs colonist count, average mood, days of food and wealth for the current map.</TotW_ShowSummary_Desc>
+  <TotW_LogOnly>Log only (no fake code)</TotW_LogOnly>
+  <TotW_LogOnly_Desc>Shows only the game events and status lines above, without the scrolling code.</TotW_LogOnly_Desc>
 </LanguageData>

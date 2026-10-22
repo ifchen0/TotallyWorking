@@ -37,6 +37,7 @@ namespace TotallyWorking
         private readonly HashSet<int> seenLetters = new HashSet<int>();
         private readonly HashSet<Message> seenMessages = new HashSet<Message>();
         private LogMessage lastLog;
+        private readonly ColonyFeed colony = new ColonyFeed();
 
         public void Poll(bool emit, List<Line> output)
         {
@@ -50,11 +51,12 @@ namespace TotallyWorking
                 game = Current.Game;
                 seenLetters.Clear();
                 seenMessages.Clear();
+                colony.Reset();
                 emit = false;
             }
-            emit &= settings.showEvents;
-            PollLetters(emit, output);
-            PollMessages(emit, output);
+            PollLetters(emit && settings.showEvents, output);
+            PollMessages(emit && settings.showEvents, output);
+            colony.Poll(emit, output);
         }
 
         private void PollLetters(bool emit, List<Line> output)
