@@ -14,6 +14,10 @@ namespace TotallyWorking
         private const float ChunkPauseChance = 0.5f;
         private const float LineStallChance = 0.03f;
         private const int MaxBurst = 6;
+        private const int OverlayWindowId = 0x54574B; // arbitrary, unlikely to clash with game window ids
+
+        // Waylith's GUI stub has this; Unity's GUI does not (there each script's windows draw with that script).
+        private static readonly bool DeferredWindows = typeof(GUI).GetMethod("ProcessPendingWindows", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static) != null;
 
         private readonly List<Line> lines = new List<Line>();
         private readonly Queue<string> pending = new Queue<string>();
@@ -137,8 +141,20 @@ namespace TotallyWorking
             if (Event.current.type != EventType.Repaint)
                 return;
 
-            float opacity = settings.level == 1 ? settings.lightOpacity : settings.heavyOpacity;
             var screen = new Rect(0f, 0f, Screen.width, Screen.height);
+            // 1.7 (Waylith) draws all GUI.Window content after every OnGUI, so GUI.depth cannot put the overlay
+            // above game windows. Register it as the last window instead, in the repaint pass only: input passes
+            // route by the windows of the pass before (always a layout pass), so clicks still reach the game.
+            if (settings.coverWindows && DeferredWindows)
+                GUI.Window(OverlayWindowId, screen, _ => DrawOverlay(screen), "", GUIStyle.none);
+            else
+                DrawOverlay(screen);
+        }
+
+        private void DrawOverlay(Rect screen)
+        {
+            var settings = TotallyWorkingMod.Settings;
+            float opacity = settings.level == 1 ? settings.lightOpacity : settings.heavyOpacity;
             var old = GUI.color;
             GUI.color = new Color(0f, 0f, 0f, opacity);
             GUI.DrawTexture(screen, Texture2D.whiteTexture);

@@ -24,4 +24,6 @@
   <TotW_WindowTitle>Window title</TotW_WindowTitle>
   <TotW_RandomPauses>Random pauses in the fake code</TotW_RandomPauses>
   <TotW_RandomPauses_Desc>The fake code stops for a few seconds now and then, like a build waiting on something. Game events still show up right away.</TotW_RandomPauses_Desc>
+  <TotW_CoverWindows>Cover game windows too</TotW_CoverWindows>
+  <TotW_CoverWindows_Desc>The overlay also covers windows such as the architect menu and colonist tabs. Turn off to keep them above the overlay. Clicks reach the game either way.</TotW_CoverWindows_Desc>
 </LanguageData>

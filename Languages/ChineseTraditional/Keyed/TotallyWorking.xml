@@ -24,4 +24,6 @@
   <TotW_WindowTitle>視窗標題</TotW_WindowTitle>
   <TotW_RandomPauses>假程式碼隨機停頓</TotW_RandomPauses>
   <TotW_RandomPauses_Desc>假程式碼會不時停頓幾秒，像編譯時在等待某些東西。遊戲事件仍會即時顯示。</TotW_RandomPauses_Desc>
+  <TotW_CoverWindows>也覆蓋遊戲視窗</TotW_CoverWindows>
+  <TotW_CoverWindows_Desc>覆蓋層也會蓋住建築選單、殖民者分頁等視窗。關閉後這些視窗會顯示在覆蓋層上方。兩種情況下點擊都會照常傳給遊戲。</TotW_CoverWindows_Desc>
 </LanguageData>

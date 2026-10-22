@@ -7,7 +7,7 @@
   <supportedVersions><li>1.6</li><li>1.7</li></supportedVersions>
   <description>Warning: this mod was written with AI coding tools (Claude Code).
 
-A boss key: press it to cover the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable.
+A boss key: press it to cover the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable. Game windows such as the architect menu are covered too (can be switched off), and clicks still reach them.
 
 The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. It comes out in bursts with random pauses, like a build console. Nothing from the game is copied into this mod.
 
