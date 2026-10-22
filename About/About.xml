@@ -14,7 +14,7 @@ The code is put together while you play from the game and your loaded mods: clas
 Game events show up in the code too: new letters as // TODO comments and messages as // NOTE comments, in the game's colours, and log errors and warnings as red and yellow compiler errors.
 
 Usage
-- F9 cycles the overlay: off, light, heavy, off. The key can be changed under Options, Keyboard.
+- F9 switches the overlay between light and heavy, Shift + F9 turns it off. The key can be changed under Options, Keyboard.
 - Darkness of each level, scroll speed, text size and which events to show are in the mod settings.
 
 Notes

@@ -27,8 +27,12 @@ namespace TotallyWorking
             var key = TotallyWorkingDefOf.TotallyWorking_CycleOverlay;
             if (key != null && key.JustPressed)
             {
+                // Key alone toggles light/heavy (turning on from off); Shift + key turns it off.
                 var settings = TotallyWorkingMod.Settings;
-                settings.level = (settings.level + 1) % 3;
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    settings.level = 0;
+                else
+                    settings.level = settings.level == 1 ? 2 : 1;
                 TotallyWorkingMod.Instance.WriteSettings();
             }
             if (TotallyWorkingMod.Settings.level == 0)

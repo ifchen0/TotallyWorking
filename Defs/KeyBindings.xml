@@ -8,7 +8,7 @@
 
   <KeyBindingDef>
     <defName>TotallyWorking_CycleOverlay</defName>
-    <label>cycle fake code overlay</label>
+    <label>fake code overlay (Shift: turn off)</label>
     <category>TotallyWorking</category>
     <defaultKeyCodeA>F9</defaultKeyCodeA>
   </KeyBindingDef>

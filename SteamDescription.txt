@@ -1,7 +1,7 @@
 A boss key that covers the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable.
 
 [h2]Usage[/h2]
-Press [b]F9[/b] to cycle the overlay: off, light, heavy, off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
+Press [b]F9[/b] to switch the overlay between light and heavy, and [b]Shift + F9[/b] to turn it off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
 
 [h2]Where the code comes from[/h2]
 The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. Nothing from the game is copied into this mod.
