@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <TotW_LightOpacity>Light level darkness: {0}%</TotW_LightOpacity>
+  <TotW_HeavyOpacity>Heavy level darkness: {0}%</TotW_HeavyOpacity>
+  <TotW_LinesPerSecond>Scroll speed: {0} lines per second</TotW_LinesPerSecond>
+  <TotW_FontSize>Text size: {0}</TotW_FontSize>
+  <TotW_KeyHint>Cycle key: {0} (change under Options, Keyboard)</TotW_KeyHint>
+  <TotW_ShowEvents>Show letters and messages</TotW_ShowEvents>
+  <TotW_ShowEvents_Desc>New letters appear as // TODO comments and messages as // NOTE comments, coloured like in the game.</TotW_ShowEvents_Desc>
+  <TotW_ShowLogErrors>Show log errors and warnings</TotW_ShowLogErrors>
+  <TotW_ShowLogErrors_Desc>New errors and warnings from the debug log appear as compiler errors (red) and warnings (yellow).</TotW_ShowLogErrors_Desc>
+</LanguageData>

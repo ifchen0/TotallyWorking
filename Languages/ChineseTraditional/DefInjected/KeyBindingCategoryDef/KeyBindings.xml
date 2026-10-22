@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <TotallyWorking.label>Totally Working</TotallyWorking.label>
+  <TotallyWorking.description>假程式碼覆蓋層。</TotallyWorking.description>
+</LanguageData>

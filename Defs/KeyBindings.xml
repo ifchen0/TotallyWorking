@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KeyBindingCategoryDef>
+    <defName>TotallyWorking</defName>
+    <label>Totally Working</label>
+    <description>Fake code overlay.</description>
+  </KeyBindingCategoryDef>
+
+  <KeyBindingDef>
+    <defName>TotallyWorking_CycleOverlay</defName>
+    <label>cycle fake code overlay</label>
+    <category>TotallyWorking</category>
+    <defaultKeyCodeA>F9</defaultKeyCodeA>
+  </KeyBindingDef>
+</Defs>

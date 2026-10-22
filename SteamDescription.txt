@@ -1,0 +1,19 @@
+Covers the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable.
+
+[h2]Usage[/h2]
+Press [b]F9[/b] to cycle the overlay: off, light, heavy, off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
+
+[h2]Where the code comes from[/h2]
+The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. Nothing from the game is copied into this mod.
+
+[h2]Game events[/h2][list]
+[*]New letters show up as [i]// TODO[/i] comments and messages as [i]// NOTE[/i] comments, in the game's colours.
+[*]Errors and warnings from the debug log show up as red and yellow compiler errors.
+[/list]
+
+[h2]Notes[/h2][list]
+[*]Darkness of each level, scroll speed, text size and which events to show are in the mod settings.
+[*]Safe to add to or remove from an existing save.
+[/list]
+[hr][/hr]
+This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder and on [url=https://github.com/ifchen0/TotallyWorking]GitHub[/url] for review.
