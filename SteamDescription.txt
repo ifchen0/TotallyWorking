@@ -8,7 +8,7 @@ While the overlay is on, the game window also takes Notepad's icon and a title o
 Scroll the mouse wheel up to read back through earlier lines. The game still zooms as usual, and the view returns to the newest lines after 5 seconds.
 
 [h2]Where the code comes from[/h2]
-The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. Nothing from the game is copied into this mod.
+The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. It comes out in bursts with random pauses, like a build console (the pauses can be switched off). Nothing from the game is copied into this mod.
 
 [h2]Game events[/h2][list]
 [*]New letters show up as [i]// TODO[/i] comments and messages as [i]// NOTE[/i] comments, in the game's colours.

@@ -22,4 +22,6 @@
   <TotW_DisguiseWindow>偽裝遊戲視窗（限Windows）</TotW_DisguiseWindow>
   <TotW_DisguiseWindow_Desc>覆蓋層開啟時，視窗標題改成下面的文字、圖示改成記事本的圖示（標題列、Alt+Tab和工作列都會變），關閉覆蓋層時還原。如果RimWorld有釘選在工作列上，工作列仍會顯示RimWorld的圖示。</TotW_DisguiseWindow_Desc>
   <TotW_WindowTitle>視窗標題</TotW_WindowTitle>
+  <TotW_RandomPauses>假程式碼隨機停頓</TotW_RandomPauses>
+  <TotW_RandomPauses_Desc>假程式碼會不時停頓幾秒，像編譯時在等待某些東西。遊戲事件仍會即時顯示。</TotW_RandomPauses_Desc>
 </LanguageData>

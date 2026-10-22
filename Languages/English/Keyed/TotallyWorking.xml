@@ -22,4 +22,6 @@
   <TotW_DisguiseWindow>Disguise the game window (Windows only)</TotW_DisguiseWindow>
   <TotW_DisguiseWindow_Desc>While the overlay is on, the window title and icon change to the title below and the Notepad icon (title bar, Alt+Tab and the taskbar). Both are restored when the overlay turns off. If RimWorld is pinned to the taskbar, the taskbar keeps the RimWorld icon.</TotW_DisguiseWindow_Desc>
   <TotW_WindowTitle>Window title</TotW_WindowTitle>
+  <TotW_RandomPauses>Random pauses in the fake code</TotW_RandomPauses>
+  <TotW_RandomPauses_Desc>The fake code stops for a few seconds now and then, like a build waiting on something. Game events still show up right away.</TotW_RandomPauses_Desc>
 </LanguageData>

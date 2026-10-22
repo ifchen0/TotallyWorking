@@ -11,6 +11,9 @@ namespace TotallyWorking
         private const int MaxLines = 1000;
         private const float PollInterval = 0.25f;
         private const float ScrollIdleSeconds = 5f;
+        private const float ChunkPauseChance = 0.5f;
+        private const float LineStallChance = 0.03f;
+        private const int MaxBurst = 6;
 
         private readonly List<Line> lines = new List<Line>();
         private readonly Queue<string> pending = new Queue<string>();
@@ -18,6 +21,10 @@ namespace TotallyWorking
         private readonly CodeSource source = new CodeSource();
         private readonly GameFeed feed = new GameFeed();
         private float lineTimer;
+        private float pauseUntil;
+        private int nextBurst = 1;
+        // Own RNG: Verse.Rand would shift the game's random sequence.
+        private readonly System.Random rand = new System.Random();
         private float pollTimer;
         private bool wasOn;
         private int scrollBack; // lines between the bottom of the view and the newest line
@@ -66,19 +73,36 @@ namespace TotallyWorking
                 lines.AddRange(feedLines);
             }
 
-            if (TotallyWorkingMod.Settings.logOnly)
+            if (TotallyWorkingMod.Settings.logOnly || Time.unscaledTime < pauseUntil)
                 lineTimer = 0f;
             else
                 lineTimer += Time.unscaledDeltaTime * TotallyWorkingMod.Settings.linesPerSecond;
             // Cap the catch-up after a long frame so the screen does not jump by pages.
             if (lineTimer > 20f)
                 lineTimer = 20f;
-            while (lineTimer >= 1f)
+            // Lines come out in bursts of random size at the same average rate: a console jumps by several
+            // lines at once, while one line at a steady pace reads as smooth scrolling.
+            int burst = 0;
+            if (lineTimer >= nextBurst)
             {
-                lineTimer -= 1f;
-                if (pending.Count == 0)
+                burst = nextBurst;
+                lineTimer -= burst;
+                nextBurst = rand.Next(1, MaxBurst + 1);
+            }
+            for (int n = 0; n < burst; n++)
+            {
+                bool newChunk = pending.Count == 0;
+                if (newChunk)
                     foreach (var l in source.NextChunk())
                         pending.Enqueue(l);
+                // Random stalls make the fake code look like a build in progress; the event feed is not held up.
+                // The next chunk is queued first, so a pause between chunks is not rolled again when it ends.
+                if (TotallyWorkingMod.Settings.randomPauses && rand.NextDouble() < (newChunk ? ChunkPauseChance : LineStallChance))
+                {
+                    pauseUntil = Time.unscaledTime + (newChunk ? Range(0.5f, 4f) : Range(0.3f, 1.5f));
+                    lineTimer = 0f;
+                    break;
+                }
                 lines.Add(new Line(pending.Dequeue()));
             }
 
@@ -120,7 +144,8 @@ namespace TotallyWorking
             GUI.DrawTexture(screen, Texture2D.whiteTexture);
 
             EnsureStyle(Mathf.RoundToInt(settings.fontSize * Prefs.UIScale));
-            float lineHeight = style.lineHeight > 0f ? style.lineHeight : style.fontSize * 1.2f;
+            // Whole pixels, so every line lands on the same pixel grid.
+            float lineHeight = Mathf.Ceil(style.lineHeight > 0f ? style.lineHeight : style.fontSize * 1.2f);
             int count = Mathf.Max(1, Mathf.FloorToInt((Screen.height - 16f) / lineHeight));
             visibleCount = count;
             int end = lines.Count - Mathf.Min(scrollBack, Mathf.Max(0, lines.Count - count));
@@ -140,6 +165,8 @@ namespace TotallyWorking
             }
             GUI.color = old;
         }
+
+        private float Range(float min, float max) => min + (float)rand.NextDouble() * (max - min);
 
         private void EnsureStyle(int size)
         {

@@ -17,6 +17,7 @@ namespace TotallyWorking
         public bool showJobs;
         public bool showSummary = true;
         public bool logOnly;
+        public bool randomPauses = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
         public int level; // 0 off, 1 light, 2 heavy; kept across restarts
@@ -34,6 +35,7 @@ namespace TotallyWorking
             Scribe_Values.Look(ref showJobs, "showJobs", false);
             Scribe_Values.Look(ref showSummary, "showSummary", true);
             Scribe_Values.Look(ref logOnly, "logOnly", false);
+            Scribe_Values.Look(ref randomPauses, "randomPauses", true);
             Scribe_Values.Look(ref disguiseWindow, "disguiseWindow", true);
             Scribe_Values.Look(ref windowTitle, "windowTitle", "build.log - Notepad");
             Scribe_Values.Look(ref level, "level", 0);
@@ -82,6 +84,7 @@ namespace TotallyWorking
             Settings.linesPerSecond = Mathf.RoundToInt(listing.Slider(Settings.linesPerSecond, 1f, 60f));
             listing.Label("TotW_FontSize".Translate(Settings.fontSize));
             Settings.fontSize = Mathf.RoundToInt(listing.Slider(Settings.fontSize, 8f, 32f));
+            listing.CheckboxLabeled("TotW_RandomPauses".Translate(), ref Settings.randomPauses, "TotW_RandomPauses_Desc".Translate());
             listing.Gap();
             listing.CheckboxLabeled("TotW_ShowEvents".Translate(), ref Settings.showEvents, "TotW_ShowEvents_Desc".Translate());
             listing.CheckboxLabeled("TotW_ShowLogErrors".Translate(), ref Settings.showLogErrors, "TotW_ShowLogErrors_Desc".Translate());
