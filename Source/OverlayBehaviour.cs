@@ -5,11 +5,12 @@ using Verse;
 namespace TotallyWorking
 {
     // Own MonoBehaviour with a low GUI.depth so the overlay draws above every RimWorld window,
-    // without touching the game's GUI code. It only paints on Repaint, so input passes through.
+    // without touching the game's GUI code. It never uses up events, so input (including the wheel) passes through.
     public class OverlayBehaviour : MonoBehaviour
     {
-        private const int MaxLines = 300;
+        private const int MaxLines = 1000;
         private const float PollInterval = 0.25f;
+        private const float ScrollIdleSeconds = 5f;
 
         private readonly List<Line> lines = new List<Line>();
         private readonly Queue<string> pending = new Queue<string>();
@@ -19,6 +20,9 @@ namespace TotallyWorking
         private float lineTimer;
         private float pollTimer;
         private bool wasOn;
+        private int scrollBack; // lines between the bottom of the view and the newest line
+        private float lastScrollTime;
+        private int visibleCount = 1;
         private GUIStyle style;
         private int styleSize;
 
@@ -46,6 +50,7 @@ namespace TotallyWorking
                 feed.Poll(false, feedLines); // start from now, no backlog of old events
             }
 
+            int before = lines.Count;
             pollTimer += Time.unscaledDeltaTime;
             if (pollTimer >= PollInterval)
             {
@@ -67,15 +72,36 @@ namespace TotallyWorking
                         pending.Enqueue(l);
                 lines.Add(new Line(pending.Dequeue()));
             }
+
+            // While scrolled back, keep the view still as new lines arrive; snap back after a quiet spell.
+            if (scrollBack > 0)
+            {
+                if (Time.unscaledTime - lastScrollTime > ScrollIdleSeconds)
+                    scrollBack = 0;
+                else
+                    scrollBack += lines.Count - before;
+            }
             if (lines.Count > MaxLines)
                 lines.RemoveRange(0, lines.Count - MaxLines);
+            scrollBack = Mathf.Clamp(scrollBack, 0, Mathf.Max(0, lines.Count - visibleCount));
         }
 
         private void OnGUI()
         {
             GUI.depth = -10000;
             var settings = TotallyWorkingMod.Settings;
-            if (settings.level == 0 || Event.current.type != EventType.Repaint)
+            if (settings.level == 0)
+                return;
+            if (Event.current.type == EventType.ScrollWheel)
+            {
+                // Only read the wheel; the event is left unused so the game still zooms.
+                float dy = Event.current.delta.y;
+                int step = Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(dy)));
+                scrollBack = Mathf.Clamp(scrollBack + (dy < 0f ? step : -step), 0, Mathf.Max(0, lines.Count - visibleCount));
+                lastScrollTime = Time.unscaledTime;
+                return;
+            }
+            if (Event.current.type != EventType.Repaint)
                 return;
 
             float opacity = settings.level == 1 ? settings.lightOpacity : settings.heavyOpacity;
@@ -87,13 +113,15 @@ namespace TotallyWorking
             EnsureStyle(Mathf.RoundToInt(settings.fontSize * Prefs.UIScale));
             float lineHeight = style.lineHeight > 0f ? style.lineHeight : style.fontSize * 1.2f;
             int count = Mathf.Max(1, Mathf.FloorToInt((Screen.height - 16f) / lineHeight));
-            int start = Mathf.Max(0, lines.Count - count);
+            visibleCount = count;
+            int end = lines.Count - Mathf.Min(scrollBack, Mathf.Max(0, lines.Count - count));
+            int start = Mathf.Max(0, end - count);
 
             // One label per line: a multi-line block drifts from lineHeight (e.g. with CJK fallback glyphs),
             // which would misplace the coloured lines.
             float width = Screen.width - 24f;
             var codeColor = new Color(0.85f, 0.85f, 0.85f, 0.95f);
-            for (int i = start; i < lines.Count; i++)
+            for (int i = start; i < end; i++)
             {
                 var line = lines[i];
                 if (line.text.Length == 0)
