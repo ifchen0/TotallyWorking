@@ -90,6 +90,8 @@ namespace TotallyWorking
         private readonly Groups groups = new Groups();
         private readonly HashSet<Alert> activeAlerts = new HashSet<Alert>();
         private readonly Dictionary<Alert, float> alertAnnounced = new Dictionary<Alert, float>();
+        // Label as announced; re-reading it on resolve would show the cleared state ("0 colonists idle").
+        private readonly Dictionary<Alert, string> alertLabels = new Dictionary<Alert, string>();
         private readonly Dictionary<Pawn, PawnState> pawns = new Dictionary<Pawn, PawnState>();
         private int lastHour = -1;
 
@@ -97,6 +99,7 @@ namespace TotallyWorking
         {
             activeAlerts.Clear();
             alertAnnounced.Clear();
+            alertLabels.Clear();
             pawns.Clear();
             lastHour = -1;
         }
@@ -123,6 +126,7 @@ namespace TotallyWorking
                     continue;
                 alertAnnounced[alert] = Time.unscaledTime;
                 string label = SafeLabel(alert);
+                alertLabels[alert] = label;
                 var color = alert.Priority == AlertPriority.Critical ? CriticalColor : alert.Priority == AlertPriority.High ? HighColor : MediumColor;
                 groups.Add("alert" + alert.Priority, "WARN  ", "alerts", color, "alert: " + label, label);
             }
@@ -131,7 +135,7 @@ namespace TotallyWorking
                 activeAlerts.Remove(gone);
                 if (emit && alertAnnounced.TryGetValue(gone, out float shown) && Time.unscaledTime - shown >= 2f)
                 {
-                    string label = SafeLabel(gone);
+                    string label = alertLabels.TryGetValue(gone, out var announced) ? announced : SafeLabel(gone);
                     groups.Add("resolved", "INFO  ", "alerts resolved", ResolvedColor, "alert resolved: " + label, label);
                 }
             }
