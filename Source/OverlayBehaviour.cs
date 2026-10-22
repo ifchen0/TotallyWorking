@@ -36,11 +36,13 @@ namespace TotallyWorking
         private int visibleCount = 1;
         private GUIStyle style;
         private int styleSize;
+        private bool settingsDirty;
 
         private void Update()
         {
+            // Key bindings are not loaded during the first part of startup.
             var key = TotallyWorkingDefOf.TotallyWorking_CycleOverlay;
-            if (key != null && key.JustPressed)
+            if (key != null && KeyPrefs.KeyPrefsData != null && key.JustPressed)
             {
                 // Key alone toggles light/heavy (turning on from off); Shift + key turns it off.
                 var settings = TotallyWorkingMod.Settings;
@@ -48,6 +50,13 @@ namespace TotallyWorking
                     settings.level = 0;
                 else
                     settings.level = settings.level == 1 ? 2 : 1;
+                settingsDirty = true;
+            }
+            // Writing settings goes through Scribe, which a save being loaded on another thread is using;
+            // writing mid-load breaks the load. Wait until no long event is running and Scribe is idle.
+            if (settingsDirty && !LongEventHandler.AnyEventNowOrWaiting && Scribe.mode == LoadSaveMode.Inactive)
+            {
+                settingsDirty = false;
                 TotallyWorkingMod.Instance.WriteSettings();
             }
             var current = TotallyWorkingMod.Settings;
