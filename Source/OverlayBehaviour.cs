@@ -39,11 +39,17 @@ namespace TotallyWorking
                     settings.level = settings.level == 1 ? 2 : 1;
                 TotallyWorkingMod.Instance.WriteSettings();
             }
-            if (TotallyWorkingMod.Settings.level == 0)
+            var current = TotallyWorkingMod.Settings;
+            if (current.level == 0)
             {
+                WindowDisguise.Restore();
                 wasOn = false;
                 return;
             }
+            if (current.disguiseWindow)
+                WindowDisguise.Apply(current.windowTitle.NullOrEmpty() ? "build.log - Notepad" : current.windowTitle);
+            else
+                WindowDisguise.Restore();
             if (!wasOn)
             {
                 wasOn = true;

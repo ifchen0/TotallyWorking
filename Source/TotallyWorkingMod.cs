@@ -17,6 +17,8 @@ namespace TotallyWorking
         public bool showJobs;
         public bool showSummary = true;
         public bool logOnly;
+        public bool disguiseWindow = true;
+        public string windowTitle = "build.log - Notepad";
         public int level; // 0 off, 1 light, 2 heavy; kept across restarts
 
         public override void ExposeData()
@@ -32,6 +34,8 @@ namespace TotallyWorking
             Scribe_Values.Look(ref showJobs, "showJobs", false);
             Scribe_Values.Look(ref showSummary, "showSummary", true);
             Scribe_Values.Look(ref logOnly, "logOnly", false);
+            Scribe_Values.Look(ref disguiseWindow, "disguiseWindow", true);
+            Scribe_Values.Look(ref windowTitle, "windowTitle", "build.log - Notepad");
             Scribe_Values.Look(ref level, "level", 0);
         }
     }
@@ -87,6 +91,10 @@ namespace TotallyWorking
             listing.CheckboxLabeled("TotW_ShowSummary".Translate(), ref Settings.showSummary, "TotW_ShowSummary_Desc".Translate());
             listing.Gap();
             listing.CheckboxLabeled("TotW_LogOnly".Translate(), ref Settings.logOnly, "TotW_LogOnly_Desc".Translate());
+            listing.Gap();
+            listing.CheckboxLabeled("TotW_DisguiseWindow".Translate(), ref Settings.disguiseWindow, "TotW_DisguiseWindow_Desc".Translate());
+            if (Settings.disguiseWindow)
+                Settings.windowTitle = listing.TextEntryLabeled("TotW_WindowTitle".Translate(), Settings.windowTitle);
             listing.End();
         }
     }

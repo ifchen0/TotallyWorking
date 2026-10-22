@@ -3,6 +3,8 @@ A boss key that covers the game with a see-through black screen of scrolling cod
 [h2]Usage[/h2]
 Press [b]F9[/b] to switch the overlay between light and heavy, and [b]Shift + F9[/b] to turn it off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
 
+While the overlay is on, the game window also takes Notepad's icon and a title of your choice ("build.log - Notepad" by default) in the title bar, Alt+Tab and the taskbar. Windows only; a taskbar pin keeps the RimWorld icon.
+
 Scroll the mouse wheel up to read back through earlier lines. The game still zooms as usual, and the view returns to the newest lines after 5 seconds.
 
 [h2]Where the code comes from[/h2]

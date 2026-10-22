@@ -19,4 +19,7 @@
   <TotW_ShowSummary_Desc>Every in-game hour, logs colonist count, average mood, days of food and wealth for the current map.</TotW_ShowSummary_Desc>
   <TotW_LogOnly>Log only (no fake code)</TotW_LogOnly>
   <TotW_LogOnly_Desc>Shows only the game events and status lines above, without the scrolling code.</TotW_LogOnly_Desc>
+  <TotW_DisguiseWindow>Disguise the game window (Windows only)</TotW_DisguiseWindow>
+  <TotW_DisguiseWindow_Desc>While the overlay is on, the window title and icon change to the title below and the Notepad icon (title bar, Alt+Tab and the taskbar). Both are restored when the overlay turns off. If RimWorld is pinned to the taskbar, the taskbar keeps the RimWorld icon.</TotW_DisguiseWindow_Desc>
+  <TotW_WindowTitle>Window title</TotW_WindowTitle>
 </LanguageData>

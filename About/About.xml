@@ -17,6 +17,7 @@ A log-only option (off by default) drops the fake code and shows just the events
 
 Usage
 - F9 switches the overlay between light and heavy, Shift + F9 turns it off. The key can be changed under Options, Keyboard.
+- While the overlay is on, the window title and icon change to Notepad's (Windows only; the title can be changed in the mod settings).
 - Scroll the mouse wheel up to read back; the game still zooms as usual, and the view returns to the newest lines after 5 seconds.
 - Darkness of each level, scroll speed, text size and which events to show are in the mod settings.
 

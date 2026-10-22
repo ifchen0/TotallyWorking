@@ -19,4 +19,7 @@
   <TotW_ShowSummary_Desc>每個遊戲內小時記錄目前地圖的殖民者人數、平均心情、食物天數和財富。</TotW_ShowSummary_Desc>
   <TotW_LogOnly>只顯示log（不顯示假程式碼）</TotW_LogOnly>
   <TotW_LogOnly_Desc>只顯示上面的遊戲事件和狀態行，不顯示捲動的程式碼。</TotW_LogOnly_Desc>
+  <TotW_DisguiseWindow>偽裝遊戲視窗（限Windows）</TotW_DisguiseWindow>
+  <TotW_DisguiseWindow_Desc>覆蓋層開啟時，視窗標題改成下面的文字、圖示改成記事本的圖示（標題列、Alt+Tab和工作列都會變），關閉覆蓋層時還原。如果RimWorld有釘選在工作列上，工作列仍會顯示RimWorld的圖示。</TotW_DisguiseWindow_Desc>
+  <TotW_WindowTitle>視窗標題</TotW_WindowTitle>
 </LanguageData>
