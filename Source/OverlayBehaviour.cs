@@ -46,9 +46,10 @@ namespace TotallyWorking
 
         private void Update()
         {
-            // Key bindings are not loaded during the first part of startup.
+            // Key bindings are not loaded during the first part of startup, and JustPressed also
+            // reads Find.WindowStack, which stays null until the UI root exists.
             var key = TotallyWorkingDefOf.TotallyWorking_CycleOverlay;
-            if (key != null && KeyPrefs.KeyPrefsData != null && key.JustPressed)
+            if (key != null && KeyPrefs.KeyPrefsData != null && Find.WindowStack != null && key.JustPressed)
             {
                 // Key alone toggles light/heavy (turning on from off); Shift + key turns it off.
                 var settings = TotallyWorkingMod.Settings;
