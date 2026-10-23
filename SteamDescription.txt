@@ -1,7 +1,7 @@
 A boss key that covers the game with a see-through black screen of scrolling code, so from a distance it looks like you are working. The game keeps running underneath and stays fully playable. Game windows such as the architect menu are covered too (can be switched off), and clicks still reach them.
 
 [h2]Usage[/h2]
-Press [b]F9[/b] to switch the overlay between light and heavy, and [b]Shift + F9[/b] to turn it off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts.
+Press [b]F9[/b] to switch the overlay between light and heavy, and [b]Shift + F9[/b] to turn it off. The key can be changed under Options, Keyboard, and the overlay stays on or off across restarts. Hold [b]Ctrl[/b] and turn the mouse wheel to make the current level darker or lighter. The code fades along with the black screen, so the light level is easier to play on.
 
 While the overlay is on, the game window also takes Notepad's icon and a title of your choice ("build.log - Notepad" by default) in the title bar, Alt+Tab and the taskbar. Windows only; a taskbar pin keeps the RimWorld icon.
 
