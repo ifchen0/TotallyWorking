@@ -20,6 +20,7 @@ Usage
 - Ctrl + mouse wheel makes the current level darker or lighter; the code fades along with the black screen.
 - While the overlay is on, the window title and icon change to Notepad's (Windows only; the title can be changed in the mod settings).
 - Scroll the mouse wheel up to read back; the game still zooms as usual, and the view returns to the newest lines after 5 seconds.
+- Colonist and enemy names are shown on top of the overlay where they stand (can be switched off in the mod settings).
 - Darkness of each level, scroll speed, text size and which events to show are in the mod settings.
 
 Notes

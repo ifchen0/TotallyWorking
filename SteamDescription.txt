@@ -7,6 +7,8 @@ While the overlay is on, the game window also takes Notepad's icon and a title o
 
 Scroll the mouse wheel up to read back through earlier lines. The game still zooms as usual, and the view returns to the newest lines after 5 seconds.
 
+Names of colonists (green) and enemies (red) are shown on top of the overlay where they stand, so you can keep track of them (can be switched off). To hide them, move the view to an empty spot.
+
 [h2]Where the code comes from[/h2]
 The code is put together while you play from the game and your loaded mods: class outlines built from their names, mixed with snippets of their XML files. It comes out in bursts with random pauses, like a build console (the pauses can be switched off). It also stops while the game is paused, so the latest game events stay on screen. Nothing from the game is copied into this mod.
 
