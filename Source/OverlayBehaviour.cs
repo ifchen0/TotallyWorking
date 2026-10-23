@@ -17,7 +17,7 @@ namespace TotallyWorking
         private const int OverlayWindowId = 0x54574B; // arbitrary, unlikely to clash with game window ids
 
         // Waylith's GUI stub has this; Unity's GUI does not (there each script's windows draw with that script).
-        private static readonly bool DeferredWindows = typeof(GUI).GetMethod("ProcessPendingWindows", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static) != null;
+        internal static readonly bool DeferredWindows = typeof(GUI).GetMethod("ProcessPendingWindows", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static) != null;
 
         private readonly List<Line> lines = new List<Line>();
         private readonly Queue<string> pending = new Queue<string>();

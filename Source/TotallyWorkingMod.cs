@@ -69,6 +69,15 @@ namespace TotallyWorking
                 var go = new GameObject("TotallyWorkingOverlay");
                 Object.DontDestroyOnLoad(go);
                 go.AddComponent<OverlayBehaviour>();
+                // On 1.7 the first OS font lookup reads every installed font file, which stalled the frame the
+                // overlay first appeared in. Build that index in the background now, unless the overlay is
+                // already on (then the first frame builds it anyway). Unity's native lookup is left alone.
+                if (Settings.level == 0 && OverlayBehaviour.DeferredWindows)
+                    System.Threading.Tasks.Task.Run(() =>
+                    {
+                        try { Font.GetOSInstalledFontNames(); }
+                        catch (System.Exception e) { Log.Warning("[TotallyWorking] Font index warm-up failed: " + e.Message); }
+                    });
             });
         }
 
