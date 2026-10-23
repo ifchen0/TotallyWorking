@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <TotW_LightOpacity>Light level darkness: {0}%</TotW_LightOpacity>
-  <TotW_HeavyOpacity>Heavy level darkness: {0}%</TotW_HeavyOpacity>
+  <TotW_LightOpacity>Light level darkness (shade and text): {0}%</TotW_LightOpacity>
+  <TotW_HeavyOpacity>Heavy level darkness (shade and text): {0}%</TotW_HeavyOpacity>
   <TotW_LinesPerSecond>Scroll speed: {0} lines per second</TotW_LinesPerSecond>
   <TotW_FontSize>Text size: {0}</TotW_FontSize>
-  <TotW_KeyHint>{0}: switch between light and heavy. Shift + {0}: turn off. (Change the key under Options, Keyboard.)</TotW_KeyHint>
+  <TotW_KeyHint>{0}: switch between light and heavy. Shift + {0}: turn off. Ctrl + mouse wheel: change the current level's darkness. (Change the key under Options, Keyboard.)</TotW_KeyHint>
   <TotW_ShowEvents>Show letters and messages</TotW_ShowEvents>
   <TotW_ShowEvents_Desc>New letters appear as // TODO comments and messages as // NOTE comments, coloured like in the game.</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>Show log errors and warnings</TotW_ShowLogErrors>

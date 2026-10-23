@@ -14,6 +14,8 @@ namespace TotallyWorking
         private const float ChunkPauseChance = 0.5f;
         private const float LineStallChance = 0.03f;
         private const int MaxBurst = 6;
+        private const float MinTextAlpha = 0.3f;
+        private const float OpacityStep = 0.05f; // per wheel notch, same as the settings slider steps
         private const int OverlayWindowId = 0x54574B; // arbitrary, unlikely to clash with game window ids
 
         // Waylith's GUI stub has this; Unity's GUI does not (there each script's windows draw with that script).
@@ -141,8 +143,21 @@ namespace TotallyWorking
             // rawType: over a game window the wheel event arrives already used (the window scrolled), still read it.
             if (Event.current.rawType == EventType.ScrollWheel)
             {
-                // Only read the wheel; the event is left unused so the game still zooms.
                 float dy = Event.current.delta.y;
+                // Ctrl + wheel sets the current level's darkness; the event is used up so the camera does not zoom too.
+                if (Event.current.control)
+                {
+                    float delta = dy < 0f ? -OpacityStep : OpacityStep;
+                    if (settings.level == 1)
+                        settings.lightOpacity = Mathf.Clamp(Mathf.Round((settings.lightOpacity + delta) * 20f) / 20f, 0.1f, 1f);
+                    else
+                        settings.heavyOpacity = Mathf.Clamp(Mathf.Round((settings.heavyOpacity + delta) * 20f) / 20f, 0.1f, 1f);
+                    settingsDirty = true;
+                    if (Event.current.type == EventType.ScrollWheel)
+                        Event.current.Use();
+                    return;
+                }
+                // Otherwise only read the wheel; the event is left unused so the game still zooms.
                 int step = Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(dy)));
                 scrollBack = Mathf.Clamp(scrollBack + (dy < 0f ? step : -step), 0, Mathf.Max(0, lines.Count - visibleCount));
                 lastScrollTime = Time.unscaledTime;
@@ -180,13 +195,18 @@ namespace TotallyWorking
             // One label per line: a multi-line block drifts from lineHeight (e.g. with CJK fallback glyphs),
             // which would misplace the coloured lines.
             float width = Screen.width - 24f;
-            var codeColor = new Color(0.85f, 0.85f, 0.85f, 0.95f);
+            // Text fades with the shade: the light level is for playing, and the text hides more of the game than the shade.
+            float textAlpha = Mathf.Max(MinTextAlpha, opacity);
+            var codeColor = new Color(0.85f, 0.85f, 0.85f, textAlpha);
             for (int i = start; i < end; i++)
             {
                 var line = lines[i];
                 if (line.text.Length == 0)
                     continue;
-                GUI.color = line.color ?? codeColor;
+                if (line.color is Color c)
+                    GUI.color = new Color(c.r, c.g, c.b, textAlpha);
+                else
+                    GUI.color = codeColor;
                 GUI.Label(new Rect(12f, 8f + (i - start) * lineHeight, width, lineHeight), line.text, style);
             }
             GUI.color = old;

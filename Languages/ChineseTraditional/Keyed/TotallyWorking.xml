@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <TotW_LightOpacity>淺色模式遮蔽度：{0}%</TotW_LightOpacity>
-  <TotW_HeavyOpacity>深色模式遮蔽度：{0}%</TotW_HeavyOpacity>
+  <TotW_LightOpacity>淺色模式遮蔽度（遮罩與文字）：{0}%</TotW_LightOpacity>
+  <TotW_HeavyOpacity>深色模式遮蔽度（遮罩與文字）：{0}%</TotW_HeavyOpacity>
   <TotW_LinesPerSecond>捲動速度：每秒{0}行</TotW_LinesPerSecond>
   <TotW_FontSize>文字大小：{0}</TotW_FontSize>
-  <TotW_KeyHint>{0}：切換淺色/深色。Shift + {0}：關閉。（按鍵可在選項的鍵盤設定中更改）</TotW_KeyHint>
+  <TotW_KeyHint>{0}：切換淺色/深色。Shift + {0}：關閉。Ctrl + 滑鼠滾輪：調整目前模式的遮蔽度。（按鍵可在選項的鍵盤設定中更改）</TotW_KeyHint>
   <TotW_ShowEvents>顯示信件與訊息</TotW_ShowEvents>
   <TotW_ShowEvents_Desc>新信件會顯示成// TODO註解，訊息顯示成// NOTE註解，顏色與遊戲內相同。</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>顯示log錯誤與警告</TotW_ShowLogErrors>
