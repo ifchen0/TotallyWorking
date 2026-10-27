@@ -26,8 +26,8 @@
   <TotW_RandomPauses_Desc>The fake code stops for a few seconds now and then, like a build waiting on something. Game events still show up right away.</TotW_RandomPauses_Desc>
   <TotW_CoverWindows>Cover game windows too</TotW_CoverWindows>
   <TotW_CoverWindows_Desc>The overlay also covers windows such as the architect menu and colonist tabs. Turn off to keep them above the overlay. Clicks reach the game either way.</TotW_CoverWindows_Desc>
-  <TotW_ShowPawnNames>Show colonist and enemy names</TotW_ShowPawnNames>
-  <TotW_ShowPawnNames_Desc>Names of colonists (green) and enemies (red) are drawn above the overlay where they stand on the map, so you can follow them.</TotW_ShowPawnNames_Desc>
+  <TotW_ShowPawnNames>Show pawn names</TotW_ShowPawnNames>
+  <TotW_ShowPawnNames_Desc>Names of every pawn on the map are drawn above the overlay where they stand, so you can follow them. Colours: colonists green, enemies red, prisoners orange, slaves yellow, your animals and mechs teal, other factions blue, wild animals grey.</TotW_ShowPawnNames_Desc>
   <TotW_PauseWithGame>Stop the fake code while the game is paused</TotW_PauseWithGame>
   <TotW_PauseWithGame_Desc>While the game is paused, no new fake code is added, so the latest game events stay on screen. Game events still show up as they happen.</TotW_PauseWithGame_Desc>
 </LanguageData>

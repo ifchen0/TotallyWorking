@@ -20,6 +20,11 @@ namespace TotallyWorking
         private const float OpacityStep = 0.05f; // per wheel notch, same as the settings slider steps
         private static readonly Color PawnColonistColor = new Color(0.5f, 0.85f, 0.5f);
         private static readonly Color PawnEnemyColor = new Color(0.9f, 0.35f, 0.35f);
+        private static readonly Color PawnPrisonerColor = new Color(0.95f, 0.6f, 0.25f);
+        private static readonly Color PawnSlaveColor = new Color(0.9f, 0.82f, 0.4f);
+        private static readonly Color PawnPlayerAnimalColor = new Color(0.45f, 0.8f, 0.75f);
+        private static readonly Color PawnFriendlyColor = new Color(0.45f, 0.7f, 0.95f);
+        private static readonly Color PawnWildColor = new Color(0.62f, 0.62f, 0.62f);
         private const int OverlayWindowId = 0x54574B; // arbitrary, unlikely to clash with game window ids
 
         // Waylith's GUI stub has this; Unity's GUI does not (there each script's windows draw with that script).
@@ -219,7 +224,23 @@ namespace TotallyWorking
             GUI.color = old;
         }
 
-        // Names of colonists and enemies on top of everything, so they can be followed under the overlay.
+        // Colour by what the pawn is to the player; checked in order, so a hostile prisoner-break reads as an enemy.
+        private static Color PawnNameColor(Pawn pawn)
+        {
+            if (pawn.HostileTo(Faction.OfPlayer))
+                return PawnEnemyColor;
+            if (pawn.IsPrisonerOfColony)
+                return PawnPrisonerColor;
+            if (pawn.IsSlaveOfColony)
+                return PawnSlaveColor;
+            if (pawn.Faction == Faction.OfPlayer)
+                return pawn.RaceProps.Humanlike ? PawnColonistColor : PawnPlayerAnimalColor;
+            if (pawn.Faction != null)
+                return PawnFriendlyColor;
+            return PawnWildColor;
+        }
+
+        // Names of every pawn on top of everything, so they can be followed under the overlay.
         private void DrawPawnNames(float alpha, float lineHeight)
         {
             if (Current.ProgramState != ProgramState.Playing || !WorldRendererUtility.DrawingMap)
@@ -229,12 +250,9 @@ namespace TotallyWorking
             if (map == null || camera == null)
                 return;
             var view = Find.CameraDriver.CurrentViewRect.ExpandedBy(1);
-            var colonistColor = new Color(PawnColonistColor.r, PawnColonistColor.g, PawnColonistColor.b, alpha);
-            var enemyColor = new Color(PawnEnemyColor.r, PawnEnemyColor.g, PawnEnemyColor.b, alpha);
             foreach (var pawn in map.mapPawns.AllPawnsSpawned)
             {
-                bool colonist = pawn.IsColonist;
-                if (!colonist && !pawn.HostileTo(Faction.OfPlayer) || !view.Contains(pawn.Position))
+                if (!view.Contains(pawn.Position))
                     continue;
                 // Same spot as the game's own pawn label: just below the pawn, in screen pixels.
                 var pos = pawn.DrawPos;
@@ -242,7 +260,8 @@ namespace TotallyWorking
                 Vector3 screenPos = camera.WorldToScreenPoint(pos);
                 string name = pawn.LabelShortCap;
                 float w = style.CalcSize(new GUIContent(name)).x;
-                GUI.color = colonist ? colonistColor : enemyColor;
+                var c = PawnNameColor(pawn);
+                GUI.color = new Color(c.r, c.g, c.b, alpha);
                 GUI.Label(new Rect(screenPos.x - w / 2f, Screen.height - screenPos.y, w, lineHeight), name, style);
             }
         }
