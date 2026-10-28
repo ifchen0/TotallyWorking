@@ -16,8 +16,8 @@ Game events show up in the code too: new letters as // TODO comments and message
 A log-only option (off by default) drops the fake code and shows just the events, as a live colony log.
 
 Usage
-- F9 switches the overlay between light and heavy, Shift + F9 turns it off. The key can be changed under Options, Keyboard.
-- Ctrl + mouse wheel makes the current level darker or lighter; the code fades along with the black screen.
+- F9 switches the overlay between level A and level B, Shift + F9 turns it off. The key can be changed under Options, Keyboard.
+- Ctrl + mouse wheel makes the current level darker or lighter; the code fades along with the black screen. For example, keep A light for playing and B dark for cover.
 - While the overlay is on, the window title and icon change to Notepad's (Windows only; the title can be changed in the mod settings).
 - Scroll the mouse wheel up to read back; the game still zooms as usual, and the view returns to the newest lines after 5 seconds.
 - Names of every pawn are shown on top of the overlay where they stand, coloured by who they are (can be switched off in the mod settings).

@@ -56,7 +56,7 @@ namespace TotallyWorking
             var key = TotallyWorkingDefOf.TotallyWorking_CycleOverlay;
             if (key != null && KeyPrefs.KeyPrefsData != null && Find.WindowStack != null && key.JustPressed)
             {
-                // Key alone toggles light/heavy (turning on from off); Shift + key turns it off.
+                // Key alone toggles level A/B (turning on from off); Shift + key turns it off.
                 var settings = TotallyWorkingMod.Settings;
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     settings.level = 0;
@@ -205,7 +205,7 @@ namespace TotallyWorking
             // One label per line: a multi-line block drifts from lineHeight (e.g. with CJK fallback glyphs),
             // which would misplace the coloured lines.
             float width = Screen.width - 24f;
-            // Text fades with the shade: the light level is for playing, and the text hides more of the game than the shade.
+            // Text fades with the shade: a lighter level is for playing, and the text hides more of the game than the shade.
             float textAlpha = Mathf.Max(MinTextAlpha, opacity);
             var codeColor = new Color(0.85f, 0.85f, 0.85f, textAlpha);
             for (int i = start; i < end; i++)

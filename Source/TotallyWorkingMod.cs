@@ -23,7 +23,7 @@ namespace TotallyWorking
         public bool showPawnNames = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
-        public int level; // 0 off, 1 light, 2 heavy; kept across restarts
+        public int level; // 0 off, 1 level A, 2 level B (either can be darker); kept across restarts
 
         public override void ExposeData()
         {
