@@ -30,6 +30,7 @@ namespace TotallyWorking
         private readonly List<Line> feedLines = new List<Line>();
         private readonly CodeSource source = new CodeSource();
         private readonly GameFeed feed = new GameFeed();
+        private readonly ObstacleMap obstacles = new ObstacleMap();
         private float lineTimer;
         private float pauseUntil;
         private int nextBurst = 1;
@@ -187,6 +188,10 @@ namespace TotallyWorking
             var old = GUI.color;
             GUI.color = new Color(0f, 0f, 0f, opacity);
             GUI.DrawTexture(screen, Texture2D.whiteTexture);
+            // Text fades with the shade: the light level is for playing, and the text hides more of the game than the shade.
+            float textAlpha = Mathf.Max(MinTextAlpha, opacity);
+            if (settings.showObstacles)
+                obstacles.Draw(textAlpha);
 
             EnsureStyle(Mathf.RoundToInt(settings.fontSize * Prefs.UIScale));
             // Whole pixels, so every line lands on the same pixel grid.
@@ -199,8 +204,6 @@ namespace TotallyWorking
             // One label per line: a multi-line block drifts from lineHeight (e.g. with CJK fallback glyphs),
             // which would misplace the coloured lines.
             float width = Screen.width - 24f;
-            // Text fades with the shade: the light level is for playing, and the text hides more of the game than the shade.
-            float textAlpha = Mathf.Max(MinTextAlpha, opacity);
             var codeColor = new Color(0.85f, 0.85f, 0.85f, textAlpha);
             for (int i = start; i < end; i++)
             {

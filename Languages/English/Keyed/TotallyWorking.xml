@@ -28,6 +28,8 @@
   <TotW_CoverWindows_Desc>The overlay also covers windows such as the architect menu and colonist tabs. Turn off to keep them above the overlay. Clicks reach the game either way.</TotW_CoverWindows_Desc>
   <TotW_ShowPawnNames>Show colonist and enemy names</TotW_ShowPawnNames>
   <TotW_ShowPawnNames_Desc>Names of colonists (green) and enemies (red) are drawn above the overlay where they stand on the map, so you can follow them.</TotW_ShowPawnNames_Desc>
+  <TotW_ShowObstacles>Show walls</TotW_ShowObstacles>
+  <TotW_ShowObstacles_Desc>Faintly marks the edges of everything that blocks movement (walls, rock, large buildings) under the code; doors are left as gaps, so the base layout can be followed. Fogged areas are not shown.</TotW_ShowObstacles_Desc>
   <TotW_PauseWithGame>Stop the fake code while the game is paused</TotW_PauseWithGame>
   <TotW_PauseWithGame_Desc>While the game is paused, no new fake code is added, so the latest game events stay on screen. Game events still show up as they happen.</TotW_PauseWithGame_Desc>
 </LanguageData>

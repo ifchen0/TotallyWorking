@@ -21,6 +21,7 @@ namespace TotallyWorking
         public bool pauseWithGame = true;
         public bool coverWindows = true;
         public bool showPawnNames = true;
+        public bool showObstacles = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
         public int level; // 0 off, 1 light, 2 heavy; kept across restarts
@@ -42,6 +43,7 @@ namespace TotallyWorking
             Scribe_Values.Look(ref pauseWithGame, "pauseWithGame", true);
             Scribe_Values.Look(ref coverWindows, "coverWindows", true);
             Scribe_Values.Look(ref showPawnNames, "showPawnNames", true);
+            Scribe_Values.Look(ref showObstacles, "showObstacles", true);
             Scribe_Values.Look(ref disguiseWindow, "disguiseWindow", true);
             Scribe_Values.Look(ref windowTitle, "windowTitle", "build.log - Notepad");
             Scribe_Values.Look(ref level, "level", 0);
@@ -103,6 +105,7 @@ namespace TotallyWorking
             listing.CheckboxLabeled("TotW_PauseWithGame".Translate(), ref Settings.pauseWithGame, "TotW_PauseWithGame_Desc".Translate());
             listing.CheckboxLabeled("TotW_CoverWindows".Translate(), ref Settings.coverWindows, "TotW_CoverWindows_Desc".Translate());
             listing.CheckboxLabeled("TotW_ShowPawnNames".Translate(), ref Settings.showPawnNames, "TotW_ShowPawnNames_Desc".Translate());
+            listing.CheckboxLabeled("TotW_ShowObstacles".Translate(), ref Settings.showObstacles, "TotW_ShowObstacles_Desc".Translate());
             listing.Gap();
             listing.CheckboxLabeled("TotW_ShowEvents".Translate(), ref Settings.showEvents, "TotW_ShowEvents_Desc".Translate());
             listing.CheckboxLabeled("TotW_ShowLogErrors".Translate(), ref Settings.showLogErrors, "TotW_ShowLogErrors_Desc".Translate());

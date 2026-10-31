@@ -28,6 +28,8 @@
   <TotW_CoverWindows_Desc>覆蓋層也會蓋住建築選單、殖民者分頁等視窗。關閉後這些視窗會顯示在覆蓋層上方。兩種情況下點擊都會照常傳給遊戲。</TotW_CoverWindows_Desc>
   <TotW_ShowPawnNames>顯示殖民者與敵人名稱</TotW_ShowPawnNames>
   <TotW_ShowPawnNames_Desc>在地圖上殖民者（綠色）與敵人（紅色）所在的位置，把名字畫在覆蓋層上方，方便追蹤他們。</TotW_ShowPawnNames_Desc>
+  <TotW_ShowObstacles>顯示牆面</TotW_ShowObstacles>
+  <TotW_ShowObstacles_Desc>在程式碼下方淡淡標出阻擋移動的東西（牆、岩壁、大型建築）的邊緣，門會留成缺口，方便看出基地的格局。迷霧中的區域不會顯示。</TotW_ShowObstacles_Desc>
   <TotW_PauseWithGame>遊戲暫停時停止假程式碼</TotW_PauseWithGame>
   <TotW_PauseWithGame_Desc>遊戲暫停時不再加入新的假程式碼，最近的遊戲事件會留在畫面上。遊戲事件仍會即時顯示。</TotW_PauseWithGame_Desc>
 </LanguageData>
