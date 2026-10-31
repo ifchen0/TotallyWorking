@@ -15,6 +15,8 @@ namespace TotallyWorking
         private const float LineStallChance = 0.03f;
         private const int MaxBurst = 6;
         private const int OverlayWindowId = 0x54574B; // arbitrary, unlikely to clash with game window ids
+        private const float SpotlightFollowSeconds = 0.15f; // time constant of the lag behind the mouse
+        private const int SpotlightTextureSize = 128;
 
         // Waylith's GUI stub has this; Unity's GUI does not (there each script's windows draw with that script).
         internal static readonly bool DeferredWindows = typeof(GUI).GetMethod("ProcessPendingWindows", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static) != null;
@@ -37,6 +39,8 @@ namespace TotallyWorking
         private GUIStyle style;
         private int styleSize;
         private bool settingsDirty;
+        private Vector2 spotlight; // GUI coordinates (top-left origin)
+        private static Texture2D spotlightMask;
 
         private void Update()
         {
@@ -70,11 +74,15 @@ namespace TotallyWorking
                 WindowDisguise.Apply(current.windowTitle.NullOrEmpty() ? "build.log - Notepad" : current.windowTitle);
             else
                 WindowDisguise.Restore();
+            var mouse = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             if (!wasOn)
             {
                 wasOn = true;
+                spotlight = mouse;
                 feed.Poll(false, feedLines); // start from now, no backlog of old events
             }
+            // The spotlight trails the mouse, so a quick flick does not swing a bright patch across the screen.
+            spotlight = Vector2.Lerp(spotlight, mouse, 1f - Mathf.Exp(-Time.unscaledDeltaTime / SpotlightFollowSeconds));
 
             int before = lines.Count;
             pollTimer += Time.unscaledDeltaTime;
@@ -166,8 +174,7 @@ namespace TotallyWorking
             var settings = TotallyWorkingMod.Settings;
             float opacity = settings.level == 1 ? settings.lightOpacity : settings.heavyOpacity;
             var old = GUI.color;
-            GUI.color = new Color(0f, 0f, 0f, opacity);
-            GUI.DrawTexture(screen, Texture2D.whiteTexture);
+            DrawShade(screen, opacity);
 
             EnsureStyle(Mathf.RoundToInt(settings.fontSize * Prefs.UIScale));
             // Whole pixels, so every line lands on the same pixel grid.
@@ -190,6 +197,58 @@ namespace TotallyWorking
                 GUI.Label(new Rect(12f, 8f + (i - start) * lineHeight, width, lineHeight), line.text, style);
             }
             GUI.color = old;
+        }
+
+        // Black shade over the screen, lighter in the spotlight. Two black layers: one at the spotlight's darkness
+        // everywhere, then one that tops it up to the full darkness outside the spotlight, faded in by the mask.
+        private void DrawShade(Rect screen, float opacity)
+        {
+            var settings = TotallyWorkingMod.Settings;
+            float inner = settings.spotlightOpacity;
+            if (settings.spotlightMode == SpotlightMode.Off || inner >= opacity)
+            {
+                GUI.color = new Color(0f, 0f, 0f, opacity);
+                GUI.DrawTexture(screen, Texture2D.whiteTexture);
+                return;
+            }
+            GUI.color = new Color(0f, 0f, 0f, inner);
+            GUI.DrawTexture(screen, Texture2D.whiteTexture);
+
+            float topUp = 1f - (1f - opacity) / (1f - inner);
+            float radius = settings.spotlightRadius * Screen.height;
+            var center = settings.spotlightMode == SpotlightMode.Center ? screen.center : spotlight;
+            var hole = new Rect(center.x - radius, center.y - radius, radius * 2f, radius * 2f);
+            GUI.color = new Color(1f, 1f, 1f, topUp);
+            GUI.DrawTexture(hole, SpotlightMask);
+            GUI.color = new Color(0f, 0f, 0f, topUp);
+            GUI.DrawTexture(new Rect(0f, 0f, screen.width, Mathf.Max(0f, hole.yMin)), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(0f, hole.yMax, screen.width, Mathf.Max(0f, screen.height - hole.yMax)), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(0f, hole.yMin, Mathf.Max(0f, hole.xMin), hole.height), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(hole.xMax, hole.yMin, Mathf.Max(0f, screen.width - hole.xMax), hole.height), Texture2D.whiteTexture);
+        }
+
+        // Black with alpha 0 in the middle rising smoothly to 1 at the edge of the circle (and beyond, in the corners).
+        private static Texture2D SpotlightMask
+        {
+            get
+            {
+                if (spotlightMask != null)
+                    return spotlightMask;
+                const int n = SpotlightTextureSize;
+                var data = new byte[n * n * 4];
+                for (int y = 0; y < n; y++)
+                    for (int x = 0; x < n; x++)
+                    {
+                        float dx = (x + 0.5f) / n * 2f - 1f, dy = (y + 0.5f) / n * 2f - 1f;
+                        float t = Mathf.InverseLerp(0.3f, 1f, Mathf.Sqrt(dx * dx + dy * dy));
+                        data[(y * n + x) * 4 + 3] = (byte)Mathf.RoundToInt(t * t * (3f - 2f * t) * 255f);
+                    }
+                // Raw bytes: the 1.7 texture stub has no SetPixels.
+                spotlightMask = new Texture2D(n, n, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp };
+                spotlightMask.LoadRawTextureData(data);
+                spotlightMask.Apply();
+                return spotlightMask;
+            }
         }
 
         // Holding the fake code while the game is paused keeps the latest real log lines on screen.

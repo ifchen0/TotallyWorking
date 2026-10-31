@@ -4,6 +4,8 @@ using Verse;
 
 namespace TotallyWorking
 {
+    public enum SpotlightMode { Off, Mouse, Center }
+
     public class OverlaySettings : ModSettings
     {
         public float lightOpacity = 0.6f;
@@ -22,6 +24,9 @@ namespace TotallyWorking
         public bool coverWindows = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
+        public SpotlightMode spotlightMode = SpotlightMode.Mouse;
+        public float spotlightRadius = 0.25f; // fraction of the screen height
+        public float spotlightOpacity = 0.4f;
         public int level; // 0 off, 1 light, 2 heavy; kept across restarts
 
         public override void ExposeData()
@@ -42,6 +47,9 @@ namespace TotallyWorking
             Scribe_Values.Look(ref coverWindows, "coverWindows", true);
             Scribe_Values.Look(ref disguiseWindow, "disguiseWindow", true);
             Scribe_Values.Look(ref windowTitle, "windowTitle", "build.log - Notepad");
+            Scribe_Values.Look(ref spotlightMode, "spotlightMode", SpotlightMode.Mouse);
+            Scribe_Values.Look(ref spotlightRadius, "spotlightRadius", 0.25f);
+            Scribe_Values.Look(ref spotlightOpacity, "spotlightOpacity", 0.4f);
             Scribe_Values.Look(ref level, "level", 0);
         }
     }
@@ -93,6 +101,15 @@ namespace TotallyWorking
             Settings.lightOpacity = Mathf.Round(listing.Slider(Settings.lightOpacity, 0.1f, 1f) * 20f) / 20f;
             listing.Label("TotW_HeavyOpacity".Translate(Mathf.RoundToInt(Settings.heavyOpacity * 100)));
             Settings.heavyOpacity = Mathf.Round(listing.Slider(Settings.heavyOpacity, 0.1f, 1f) * 20f) / 20f;
+            if (listing.ButtonText("TotW_Spotlight".Translate(("TotW_Spotlight_" + Settings.spotlightMode).Translate())))
+                Settings.spotlightMode = (SpotlightMode)(((int)Settings.spotlightMode + 1) % 3);
+            if (Settings.spotlightMode != SpotlightMode.Off)
+            {
+                listing.Label("TotW_SpotlightRadius".Translate(Mathf.RoundToInt(Settings.spotlightRadius * 100)));
+                Settings.spotlightRadius = Mathf.Round(listing.Slider(Settings.spotlightRadius, 0.1f, 0.5f) * 20f) / 20f;
+                listing.Label("TotW_SpotlightOpacity".Translate(Mathf.RoundToInt(Settings.spotlightOpacity * 100)));
+                Settings.spotlightOpacity = Mathf.Round(listing.Slider(Settings.spotlightOpacity, 0f, 0.9f) * 20f) / 20f;
+            }
             listing.Label("TotW_LinesPerSecond".Translate(Settings.linesPerSecond));
             Settings.linesPerSecond = Mathf.RoundToInt(listing.Slider(Settings.linesPerSecond, 1f, 60f));
             listing.Label("TotW_FontSize".Translate(Settings.fontSize));

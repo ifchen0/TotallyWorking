@@ -2,6 +2,12 @@
 <LanguageData>
   <TotW_LightOpacity>淺色模式遮蔽度：{0}%</TotW_LightOpacity>
   <TotW_HeavyOpacity>深色模式遮蔽度：{0}%</TotW_HeavyOpacity>
+  <TotW_Spotlight>聚光燈：{0}</TotW_Spotlight>
+  <TotW_Spotlight_Off>關閉</TotW_Spotlight_Off>
+  <TotW_Spotlight_Mouse>跟隨滑鼠</TotW_Spotlight_Mouse>
+  <TotW_Spotlight_Center>畫面中央</TotW_Spotlight_Center>
+  <TotW_SpotlightRadius>聚光燈大小：畫面高度的{0}%</TotW_SpotlightRadius>
+  <TotW_SpotlightOpacity>聚光燈遮蔽度：{0}%（模式本身比這更淺時沒有效果）</TotW_SpotlightOpacity>
   <TotW_LinesPerSecond>捲動速度：每秒{0}行</TotW_LinesPerSecond>
   <TotW_FontSize>文字大小：{0}</TotW_FontSize>
   <TotW_KeyHint>{0}：切換淺色/深色。Shift + {0}：關閉。（按鍵可在選項的鍵盤設定中更改）</TotW_KeyHint>
