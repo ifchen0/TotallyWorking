@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <TotW_LightOpacity>模式A遮蔽度（遮罩與文字）：{0}%</TotW_LightOpacity>
-  <TotW_HeavyOpacity>模式B遮蔽度（遮罩與文字）：{0}%</TotW_HeavyOpacity>
+  <TotW_LightOpacity>遊玩模式遮蔽度：{0}%</TotW_LightOpacity>
+  <TotW_HeavyOpacity>工作模式遮蔽度（遮罩與文字）：{0}%</TotW_HeavyOpacity>
   <TotW_LinesPerSecond>捲動速度：每秒{0}行</TotW_LinesPerSecond>
   <TotW_FontSize>文字大小：{0}</TotW_FontSize>
-  <TotW_KeyHint>{0}：切換模式A/模式B。Shift + {0}：關閉。Ctrl + 滑鼠滾輪：調整目前模式的遮蔽度。（按鍵可在選項的鍵盤設定中更改）例如A調淡用來玩，B調暗用來掩護。</TotW_KeyHint>
+  <TotW_KeyHint>{0}：切換遊玩模式（變暗的畫面用來玩）/工作模式（捲動的程式碼用來掩護）。Shift + {0}：關閉。Ctrl + 滑鼠滾輪：調整目前模式的遮蔽度。（按鍵可在選項的鍵盤設定中更改）</TotW_KeyHint>
   <TotW_ShowEvents>顯示信件與訊息</TotW_ShowEvents>
   <TotW_ShowEvents_Desc>新信件會顯示成// TODO註解，訊息顯示成// NOTE註解，顏色與遊戲內相同。</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>顯示log錯誤與警告</TotW_ShowLogErrors>
@@ -30,4 +30,6 @@
   <TotW_ShowPawnNames_Desc>在地圖上每個角色所在的位置，把名字畫在覆蓋層上方，方便追蹤他們。顏色：殖民者綠色、敵人紅色、囚犯橘色、奴隸黃色、自己的動物與機械體青色、其他派系藍色、野生動物灰色。</TotW_ShowPawnNames_Desc>
   <TotW_PauseWithGame>遊戲暫停時停止假程式碼</TotW_PauseWithGame>
   <TotW_PauseWithGame_Desc>遊戲暫停時不再加入新的假程式碼，最近的遊戲事件會留在畫面上。遊戲事件仍會即時顯示。</TotW_PauseWithGame_Desc>
+  <TotW_ShadeOnly>遊玩模式只有遮罩（不顯示任何文字）</TotW_ShadeOnly>
+  <TotW_ShadeOnly_Desc>遊玩模式只留下變暗的遮罩：不顯示假程式碼，也不顯示遊戲事件。角色名稱仍由下面的設定決定。取消勾選則遊玩模式也顯示程式碼，並隨遮蔽度變淡。工作模式一律顯示程式碼。</TotW_ShadeOnly_Desc>
 </LanguageData>

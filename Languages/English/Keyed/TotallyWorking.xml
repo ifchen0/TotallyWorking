@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <TotW_LightOpacity>Level A darkness (shade and text): {0}%</TotW_LightOpacity>
-  <TotW_HeavyOpacity>Level B darkness (shade and text): {0}%</TotW_HeavyOpacity>
+  <TotW_LightOpacity>Play mode darkness: {0}%</TotW_LightOpacity>
+  <TotW_HeavyOpacity>Work mode darkness (shade and text): {0}%</TotW_HeavyOpacity>
   <TotW_LinesPerSecond>Scroll speed: {0} lines per second</TotW_LinesPerSecond>
   <TotW_FontSize>Text size: {0}</TotW_FontSize>
-  <TotW_KeyHint>{0}: switch between level A and level B. Shift + {0}: turn off. Ctrl + mouse wheel: change the current level's darkness. (Change the key under Options, Keyboard.) For example, keep A light for playing and B dark for cover.</TotW_KeyHint>
+  <TotW_KeyHint>{0}: switch between play mode (a dark screen to play on) and work mode (scrolling code for cover). Shift + {0}: turn off. Ctrl + mouse wheel: change the current mode's darkness. (Change the key under Options, Keyboard.)</TotW_KeyHint>
   <TotW_ShowEvents>Show letters and messages</TotW_ShowEvents>
   <TotW_ShowEvents_Desc>New letters appear as // TODO comments and messages as // NOTE comments, coloured like in the game.</TotW_ShowEvents_Desc>
   <TotW_ShowLogErrors>Show log errors and warnings</TotW_ShowLogErrors>
@@ -30,4 +30,6 @@
   <TotW_ShowPawnNames_Desc>Names of every pawn on the map are drawn above the overlay where they stand, so you can follow them. Colours: colonists green, enemies red, prisoners orange, slaves yellow, your animals and mechs teal, other factions blue, wild animals grey.</TotW_ShowPawnNames_Desc>
   <TotW_PauseWithGame>Stop the fake code while the game is paused</TotW_PauseWithGame>
   <TotW_PauseWithGame_Desc>While the game is paused, no new fake code is added, so the latest game events stay on screen. Game events still show up as they happen.</TotW_PauseWithGame_Desc>
+  <TotW_ShadeOnly>Play mode: shade only (no text)</TotW_ShadeOnly>
+  <TotW_ShadeOnly_Desc>Play mode shows only the dark layer: no fake code and no game events. Pawn names still follow their own setting below. Turn off to show the code in play mode too, faded with the darkness. Work mode always shows the code.</TotW_ShadeOnly_Desc>
 </LanguageData>

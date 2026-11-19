@@ -56,7 +56,7 @@ namespace TotallyWorking
             var key = TotallyWorkingDefOf.TotallyWorking_CycleOverlay;
             if (key != null && KeyPrefs.KeyPrefsData != null && Find.WindowStack != null && key.JustPressed)
             {
-                // Key alone toggles level A/B (turning on from off); Shift + key turns it off.
+                // Key alone toggles play/work mode (turning on from off); Shift + key turns it off.
                 var settings = TotallyWorkingMod.Settings;
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     settings.level = 0;
@@ -82,6 +82,13 @@ namespace TotallyWorking
                 WindowDisguise.Apply(current.windowTitle.NullOrEmpty() ? "build.log - Notepad" : current.windowTitle);
             else
                 WindowDisguise.Restore();
+            // Play mode can be shade only: no fake code and no feed. Treated as off for the feed, so switching
+            // to work mode starts the feed from that moment instead of replaying what happened meanwhile.
+            if (ShadeOnly)
+            {
+                wasOn = false;
+                return;
+            }
             if (!wasOn)
             {
                 wasOn = true;
@@ -208,7 +215,7 @@ namespace TotallyWorking
             // Text fades with the shade: a lighter level is for playing, and the text hides more of the game than the shade.
             float textAlpha = Mathf.Max(MinTextAlpha, opacity);
             var codeColor = new Color(0.85f, 0.85f, 0.85f, textAlpha);
-            for (int i = start; i < end; i++)
+            for (int i = ShadeOnly ? end : start; i < end; i++)
             {
                 var line = lines[i];
                 if (line.text.Length == 0)
@@ -265,6 +272,8 @@ namespace TotallyWorking
                 GUI.Label(new Rect(screenPos.x - w / 2f, Screen.height - screenPos.y, w, lineHeight), name, style);
             }
         }
+
+        private static bool ShadeOnly => TotallyWorkingMod.Settings.level == 1 && TotallyWorkingMod.Settings.shadeOnly;
 
         // Holding the fake code while the game is paused keeps the latest real log lines on screen.
         private static bool GamePaused => TotallyWorkingMod.Settings.pauseWithGame && Current.ProgramState == ProgramState.Playing

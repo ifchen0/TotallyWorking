@@ -17,13 +17,14 @@ namespace TotallyWorking
         public bool showJobs;
         public bool showSummary = true;
         public bool logOnly;
+        public bool shadeOnly = true; // play mode only
         public bool randomPauses = true;
         public bool pauseWithGame = true;
         public bool coverWindows = true;
         public bool showPawnNames = true;
         public bool disguiseWindow = true;
         public string windowTitle = "build.log - Notepad";
-        public int level; // 0 off, 1 level A, 2 level B (either can be darker); kept across restarts
+        public int level; // 0 off, 1 play mode, 2 work mode; kept across restarts
 
         public override void ExposeData()
         {
@@ -38,6 +39,7 @@ namespace TotallyWorking
             Scribe_Values.Look(ref showJobs, "showJobs", false);
             Scribe_Values.Look(ref showSummary, "showSummary", true);
             Scribe_Values.Look(ref logOnly, "logOnly", false);
+            Scribe_Values.Look(ref shadeOnly, "shadeOnly", true);
             Scribe_Values.Look(ref randomPauses, "randomPauses", true);
             Scribe_Values.Look(ref pauseWithGame, "pauseWithGame", true);
             Scribe_Values.Look(ref coverWindows, "coverWindows", true);
@@ -93,6 +95,7 @@ namespace TotallyWorking
             listing.Gap();
             listing.Label("TotW_LightOpacity".Translate(Mathf.RoundToInt(Settings.lightOpacity * 100)));
             Settings.lightOpacity = Mathf.Round(listing.Slider(Settings.lightOpacity, 0.1f, 1f) * 20f) / 20f;
+            listing.CheckboxLabeled("TotW_ShadeOnly".Translate(), ref Settings.shadeOnly, "TotW_ShadeOnly_Desc".Translate());
             listing.Label("TotW_HeavyOpacity".Translate(Mathf.RoundToInt(Settings.heavyOpacity * 100)));
             Settings.heavyOpacity = Mathf.Round(listing.Slider(Settings.heavyOpacity, 0.1f, 1f) * 20f) / 20f;
             listing.Label("TotW_LinesPerSecond".Translate(Settings.linesPerSecond));
